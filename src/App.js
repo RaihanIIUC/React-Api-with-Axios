@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import CartDetail from "./components/cart_detail";
-import CartList from "./components/cart_page";
+import ShirtDetail from "./components/detail_shirt";
+import ShirtList from "./components/shirt_list";
 import Loader from "./components/image-use";
 import { useHistory } from "react-router";
 
@@ -14,15 +14,15 @@ import {
   IconButton,
   AppBar,
 } from "@material-ui/core";
-import AddCart from "./components/add-cart";
-import DeleteCart from "./components/cart_delete";
-import EditCart from "./components/edit_cart";
-import MenuIcon from "@material-ui/icons/Menu";
+import AddShirt from "./components/shirt_add";
+import DeleteShirt from "./components/delete_shirt";
+import EditShirt from "./components/edit_shirt";
+import MenuBar from "./components/Menu";
 
 const App = () => {
   const [loader, setLoader] = useState(true);
   const history = useHistory();
-
+ 
   useEffect(() => {
     setInterval(() => {
       setLoader(false);
@@ -32,36 +32,26 @@ const App = () => {
   return (
     <>
       <Grid container justifyContent={"center"}>
-        <AppBar position="sticky" color="primary">
-          <Toolbar>
-            <IconButton edge="start" color="inherit" aria-label="menu">
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit">
-              <Link to="/">Cart List</Link>
-            </Typography>
-            <Button>
-              <Link to="/cart_add">Cart Add</Link>
-            </Button>
-          </Toolbar>
-        </AppBar>
+        <MenuBar />
 
         <Grid item md={12}>
           <Switch>
+
+
             <Route exact path="/">
-              <CartList />
+              <ShirtList />
             </Route>
-            <Route path="/cart_add">
-              <AddCart />
+            <Route path="/shirt_add">
+              <AddShirt />
             </Route>
-            <Route exact path="/products/:id">
-              <CartDetail />
+            <Route exact path="/shirts/:id">
+              <ShirtDetail />
             </Route>
-            <Route path="/cart_edit/:id">
-              <EditCart />
+            <Route path="/shirt_edit/:id">
+              <EditShirt />
             </Route>
-            <Route path="/cart_delete/:id">
-              <DeleteCart />
+            <Route path="/shirt_delete/:id">
+              <DeleteShirt />
             </Route>
             <Route path="*">404</Route>
           </Switch>

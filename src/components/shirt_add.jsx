@@ -1,15 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import Loader from "../components/image-use";
+import Loader from "./image-use";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Grid, TextField, Button } from "@material-ui/core";
 
-const AddCart = () => {
+const AddShirt = () => {
   const [loader, setLoader] = useState(true);
   const history = useHistory();
-  const [cart, setCart] = useState({
+  const [shirt, setShirt] = useState({
     name: "",
     description: "",
     price: "",
@@ -17,18 +17,18 @@ const AddCart = () => {
     image: "",
   });
 
-  const AddCart = (e, key) => {
-    setCart({ ...cart, [key]: e.target.value });
+  const Addshirt = (e, key) => {
+    setShirt({ ...shirt, [key]: e.target.value });
   };
 
-  const requestAddCart = () => {
+  const requestAddshirt = () => {
     axios
       .post("https://fakestoreapi.com/products", {
-        name: cart.name,
-        description: cart.description,
-        price: cart.price,
-        category: cart.category,
-        image: cart.image,
+        name: shirt.name,
+        description: shirt.description,
+        price: shirt.price,
+        category: shirt.category,
+        image: shirt.image,
       })
       .then((response) => {
         console.log(response.data, "===responsed");
@@ -47,57 +47,57 @@ const AddCart = () => {
   ) : (
     <Grid container spacing={2} justifyContent={"center"}>
       <Grid item md={12}>
-        <Grid item md={6}>
-          <p>Cart Add </p>
+        <Grid item mdf={6}>
+          <p>shirt Add </p>
         </Grid>
       </Grid>
       <Grid item md={6}>
         <div>
-          <p>Cart Name </p>
+          <p>shirt Name </p>
           <TextField
             variant="outlined"
-            value={cart.name}
-            onChange={(e) => AddCart(e, "name")}
+            value={shirt.name}
+            onChange={(e) => Addshirt(e, "name")}
           />
         </div>
         <div>
-          <p>Cart Description </p>
+          <p>shirt Description </p>
           <TextField
             variant="outlined"
-            value={cart.description}
-            onChange={(e) => AddCart(e, "description")}
+            value={shirt.description}
+            onChange={(e) => Addshirt(e, "description")}
           />
         </div>
         <div>
-          <p>Cart Price </p>
+          <p>shirt Price </p>
           <TextField
             variant="outlined"
-            value={cart.price}
-            onChange={(e) => AddCart(e, "price")}
+            value={shirt.price}
+            onChange={(e) => Addshirt(e, "price")}
           />
         </div>
         <div>
-          <p>Cart Category </p>
+          <p>shirt Category </p>
           <TextField
             variant="outlined"
-            value={cart.category}
-            onChange={(e) => AddCart(e, "category")}
+            value={shirt.category}
+            onChange={(e) => Addshirt(e, "category")}
           />
         </div>
         <div>
-          <p>Cart Image </p>
+          <p>shirt Image </p>
           <TextField
             variant="outlined"
-            value={cart.image}
-            onChange={(e) => AddCart(e, "image")}
+            value={shirt.image}
+            onChange={(e) => Addshirt(e, "image")}
           />
         </div>
-        <Button variant="outlined" color="secondary" onClick={requestAddCart}>
-          Add Cart
+        <Button variant="outlined" color="secondary" onClick={requestAddshirt}>
+          Add shirt
         </Button>
       </Grid>
     </Grid>
   );
 };
 
-export default AddCart;
+export default AddShirt;
